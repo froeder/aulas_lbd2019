@@ -130,3 +130,6 @@ VALUES (123456789, 'Alice', 'F', '1988-12-30', 'Filha') ;
 INSERT INTO dependente (essn, nome_dependente, sexo, datanasc, parentesco) 
 VALUES (123456789, 'Elizabeth', 'F', '1967-05-05', 'Cônjuge') ;
 
+
+UPDATE empregdo SET dno = 5 where ssn = 333445555 ;
+UPDATE empregdo SET dno = 4 where ssn = 987654321 ;
