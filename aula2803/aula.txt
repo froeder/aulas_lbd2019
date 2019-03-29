@@ -1,0 +1,33 @@
+aspas duplas para especificar o case sensitve  -> prestar atencao na prova
+
+diferença entre % e _ -> prova
+
+%abre leque de opçoes, _ fecha ;
+
+ILIKE retorna tudo idependente de case sensitive ;
+
+
+
+UNION -> precisa ter a mesma quantidade de atributos, e ser do mesmo domínio ;
+UNION ALL -> vai todos, contrário do distinct ;
+
+SELECT pnome FROM empregado 
+EXCEPT
+SELECT pnome FROM empregado, dependente
+WHERE empregado.ssn = dependente.essn ;
+
+Exibe os que não possuem depenentes ;
+
+--Exibe todos os empregados que nao possuem filho ;
+
+SELECT pnome FROM empregado
+EXCEPT 
+SELECT pnome
+FROM empregado, dependente
+WHERE empregado.ssn = dependente.essn AND
+dependente.parenteco ILIKE 'Filh_' ;
+
+
+SOME -> algum , inclusive ele
+
+EXISTS E NOT EXISTS
