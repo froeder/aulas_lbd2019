@@ -1,0 +1,25 @@
+Visões
+
+-- É uma tabela derivada de outras tabelas ;
+
+CREATE VIEW teste 
+    AS SELECT fname, pname 
+    FROM tabelas 
+    WHERE nmro = nmo  ;
+
+    GRANT SELECT ON teste TO user ;
+
+-- Existem duas formas de implementar visoes
+
+-- QM - visão é criada a cada consulta
+
+
+-- VM  visão é crida na primeira consulta
+
+WITH CHCK POINT pra atualizar a view ;
+
+-- Nõ da pra atualizar view quando tem UNION envolvendo as dus;
+
+-- Não pode conter, ara ser atualiźavel:
+
+ Junção, agregação, subconsulta o FROM, distinct ;
