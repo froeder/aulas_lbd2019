@@ -68,5 +68,5 @@ LOOP while / for
 -- * for each
 
 FOR variavel IN [REVERSE] expressao ... expressao loop
-  instrucoes
+  instrucoes 
 end loop
