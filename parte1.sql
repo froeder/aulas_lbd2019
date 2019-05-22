@@ -1,11 +1,13 @@
 CREATE TABLE telefone(
     id_cliente INTEGER, 
     telefone INTEGER NOT NULL, 
-    telefone_tipo NOT NULL,
-    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES pessoa (id)
+    telefone_tipo NOT NULL
 );
 
-CREATE TABLE fiador();
+CREATE TABLE fiador(
+    id SERIAL PRIMARY KEY, 
+    id_cliente INTEGER
+);
 
 CREATE TABLE indicacao();
 
@@ -18,7 +20,10 @@ CREATE TABLE pessoa(
     estado_civil VARCHAR(20) NOT NULL,
     profissao VARCHAR(255) NOT NULL,
     CHECK (sexo IN('M', 'F'))
-)
+) ;
+
+ADD CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES pessoa (id) ;
+
 
 CREATE TABLE cliente_usuario(
     id SERIAL PRIMARY KEY,
@@ -78,36 +83,44 @@ CREATE TABLE quartos
 CREATE TABLE imovel_casa
 (
     id SERIAL PRIMARY KEY,
+    id_imovel PRIMARY_KEY,
     id_quartos INTEGER NOT NULL,
     data_construção DATA NOT NULL,
-    CONSTRAINT fk_quartos FOREIGN KEY (id_quartos) REFERENCES quartos (id)
+    CONSTRAINT fk_quartos FOREIGN KEY (id_quartos) REFERENCES quartos (id),
+    CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
 );
 
 CREATE TABLE imovel_apartamento
 (
     id SERIAL PRIMARY KEY,
     id_quartos INTEGER NOT NULL ,
+    id_imovel INTEGER,
     data_construção DATA NOT NULL,
     andar INTEGER NOT NULL,
     valor_condominio DECIMAL (10,2) NOT NULL,
     possui_porteiro BOOLEAN,
-    CONSTRAINT fk_quartos FOREIGN KEY (id_quartos) REFERENCES quartos (id)
+    CONSTRAINT fk_quartos FOREIGN KEY (id_quartos) REFERENCES quartos (id),
+    CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
 );
 
 CREATE TABLE imovel_terreno
 (
     id SERIAL PRIMARY KEY,
+    id_imovel INTEGER,
     largura DECIMAL(10,2) NOT NULL,
     comprimento DECIMAL(10,2) NOT NULL,
     topologia VARCHAR(255) NOT NULL,
-    CHECK (topologia IN ('Aclive', 'Declive', 'Nenhuma'))
+    CHECK (topologia IN ('Aclive', 'Declive', 'Nenhuma')),
+    CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
 );
 
 CREATE TABLE imovel_comercial
 (
     id SERIAL PRIMARY KEY,
+    id_imovel INTEGER,
     data_construção DATA NOT NULL,
     qtde_banheiro INTEGER NOT NULL,
-    qtde_quartos INTEGER NOT NULL
+    qtde_quartos INTEGER NOT NULL,
+    CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
 );
 
