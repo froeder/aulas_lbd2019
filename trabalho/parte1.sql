@@ -1,16 +1,3 @@
-CREATE TABLE telefone(
-    id_cliente INTEGER, 
-    telefone INTEGER NOT NULL, 
-    telefone_tipo NOT NULL
-);
-
-CREATE TABLE fiador(
-    id SERIAL PRIMARY KEY, 
-    id_cliente INTEGER
-);
-
-CREATE TABLE indicacao();
-
 CREATE TABLE pessoa(
     id SERIAL PRIMARY KEY ,
     cpf INTEGER NOT NULL ,
@@ -22,16 +9,95 @@ CREATE TABLE pessoa(
     CHECK (sexo IN('M', 'F'))
 ) ;
 
-ADD CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES pessoa (id) ;
+CREATE TABLE telefone(
+    id_cliente INTEGER, 
+    telefone INTEGER NOT NULL, 
+    telefone_tipo NOT NULL,
+    CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id) 
+);
 
+CREATE TABLE fiador(
+    id SERIAL PRIMARY KEY, 
+    id_pessoa INTEGER NOT NULL,
+    CONSTRAINT fk_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa(id)
+
+);
+
+CREATE TABLE indicacao(
+    id SERIAL PRIMARY KEY,
+    id_pessoa PRIMARY KEY,
+    CONSTRAINT fk_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa(id)
+);
 
 CREATE TABLE cliente_usuario(
     id SERIAL PRIMARY KEY,
     id_fiador INTEGER NOT NULL, 
     id_indicacao INTEGER NOT NULL,
-    CONSTRAINT fk_id_fiador FOREIGN KEY (id_fiador) REFERENCES pessoa (id),
-    CONSTRAINT fk_id_indicacao FOREIGN KEY (id_indicacao) REFERENCES pessoa (id)
+    CONSTRAINT fk_id_fiador FOREIGN KEY (id_fiador) REFERENCES fiador (id),
+    CONSTRAINT fk_id_indicacao FOREIGN KEY (id_indicacao) REFERENCES indicacao (id)
 );
+
+CREATE TABLE cliente_proprietario(
+    id SERIAL PRIMARY KEY,
+    id_pessoa INTEGER,
+    CONSTRAINT fk_pessoa FOREIGN KEY (idpessoa) REFERENCES pessoa(id)
+);
+
+CREATE TABLE cargo(
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(255) NOT NULL, 
+    salario_base DECIMAL(10,2) NOT NULL
+);
+
+CREATE TABLE cliente_funcionario(
+    id SERIAL PRIMARY KEY,
+    id_cargo INTEGER,
+    id_pessoa INTEGER,
+    data_ingresso DATE NOT NULL, 
+    salario DECIMAL(10,2) NOT NULL, 
+    login VARCHAR(255) NOT NULL, 
+    senha VARCHAR(128) NOT NULL,
+    CONSTRAINT fk_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa(id),
+    CONSTRAINT fk_cargo FOREIGN KEY (id_cargo) REFERENCES cargo(id)
+);
+
+CREATE TABLE comissao(
+    id SERIAL PRIMARY KEY,
+    id_funcionario INTEGER NOT NULL, 
+    id_transacao INTEGER NOT NULL,
+    mes VARCHAR(15) NOT NULL, 
+    valor DECIMAL(10,2) NOT NULL, 
+    CONSTRAINT fk_funcionario FOREIGN KEY (id_funcionario) REFERENCES cliente_funcionario(id),
+    CONSTRAINT fk_transacao FOREIGN KEY (id_transacao) REFERENCES transacao(id)
+);
+
+CREATE TABLE aluguel(
+    id SERIAL PRIMARY KEY,
+    id_transacao INTEGER NOT NULL,
+    id_forma_pagamento INTEGER NOT NULL,
+);
+
+CREATE TABLE compra(
+    id SERIAL PRIMARY KEY,
+    id_transacao INTEGER NOT NULL,
+    id_forma_pagamento INTEGER NOT NULL
+);
+
+CREATE TABLE transacao(
+    id SERIAL PRIMARY KEY,
+    id_imovel INTEGER NOT NULL,
+    id_cliente_usuario INTEGER NOT NULL,
+    id_cliente_funcionario INTEGER NOT NULL, 
+    data DATE NOT NULL, 
+    comissao DECIMAL(10,2) NOT NULL,
+    numero_contrato INTEGER NOT NULL,
+    CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id),
+    CONSTRAINT fk_cliente_usuario FOREIGN KEY (id_cliente_usuario) REFERENCES cliente_usuario(id),
+    CONSTRAINT fk_cliente_funcionario FOREIGN KEY (id_cliente_funcionario) REFERENCES cliente_funcionario(id)
+
+);
+
+
 
 CREATE TABLE endereco
 (
@@ -43,8 +109,7 @@ CREATE TABLE endereco
     estado VARCHAR (255) NOT NULL,
     cep VARCHAR (255) NOT NULL,
     complemento VARCHAR (255) NOT NULL
-)
-;
+);
 
 CREATE TABLE imovel
 (
@@ -59,7 +124,7 @@ CREATE TABLE imovel
     descricao VARCHAR(255) ,
     area DECIMAL(10,2) NOT NULL,
     CHECK (disponivel_tipo IN ("Aluguel", "Compra", "Indisponivel")),
-    CONSTRAINT fk_cliente_proprietario (id_cliente_proprietario) REFERENCES cliente_proprietario (id)
+    CONSTRAINT fk_cliente_proprietario FOREIGN KEY (id_cliente_proprietario) REFERENCES cliente_proprietario (id)
 );
 
 CREATE TABLE fotos
