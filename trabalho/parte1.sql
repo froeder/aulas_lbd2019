@@ -10,10 +10,10 @@ CREATE TABLE pessoa(
 ) ;
 
 CREATE TABLE telefone(
-    id_cliente INTEGER, 
+    id SERIAL PRIMARY KEY,
+    id_cliente INTEGER NOT NULL, 
     telefone INTEGER NOT NULL, 
-    telefone_tipo NOT NULL,
-    CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id) 
+    telefone_tipo INTEGER NOT NULL
 );
 
 CREATE TABLE fiador(
@@ -25,7 +25,7 @@ CREATE TABLE fiador(
 
 CREATE TABLE indicacao(
     id SERIAL PRIMARY KEY,
-    id_pessoa PRIMARY KEY,
+    id_pessoa INTEGER NOT NULL,
     CONSTRAINT fk_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa(id)
 );
 
@@ -33,9 +33,13 @@ CREATE TABLE cliente_usuario(
     id SERIAL PRIMARY KEY,
     id_fiador INTEGER NOT NULL, 
     id_indicacao INTEGER NOT NULL,
+    id_telefone INTEGER NOT NULL, 
     CONSTRAINT fk_id_fiador FOREIGN KEY (id_fiador) REFERENCES fiador (id),
+    CONSTRAINT fk_id_indicacao FOREIGN KEY (id_indicacao) REFERENCES indicacao (id),
     CONSTRAINT fk_id_indicacao FOREIGN KEY (id_indicacao) REFERENCES indicacao (id)
 );
+           
+ALTER TABLE telefone ADD CONSTRAINT fk_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id) ;
 
 CREATE TABLE cliente_proprietario(
     id SERIAL PRIMARY KEY,
