@@ -193,3 +193,10 @@ CREATE TABLE imovel_comercial
     CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
 );
 
+
+
+funçao para pegar idade do inquilino, se for muito velho nao permitir
+
+funcao saber quantos transacoes fez cada funcionario
+
+quanto custa hora media de cada funcionario
