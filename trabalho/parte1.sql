@@ -195,8 +195,3 @@ CREATE TABLE imovel_comercial
 
 
 
-funçao para pegar idade do inquilino, se for muito velho nao permitir
-
-funcao saber quantos transacoes fez cada funcionario
-
-quanto custa hora media de cada funcionario
