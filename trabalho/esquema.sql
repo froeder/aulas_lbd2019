@@ -53,17 +53,19 @@ CREATE TABLE telefone(
 );
 
 CREATE TABLE fiador(
-    id_cliente INTEGER PRIMARY KEY, 
+    id_cliente INTEGER NOT NULL, 
     id_pessoa INTEGER NOT NULL,
     CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id),
-    CONSTRAINT fk_id_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf)
+    CONSTRAINT fk_id_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
+    PRIMARY KEY (id_pessoa, id_cliente)
 );
 
 CREATE TABLE indicacao(
-    id_cliente INTEGER PRIMARY KEY, 
+    id_cliente INTEGER NOT NULL, 
     id_pessoa INTEGER NOT NULL,
     CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id),
-    CONSTRAINT fk_id_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf)
+    CONSTRAINT fk_id_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
+    PRIMARY KEY (id_pessoa, id_cliente)
 );
 
 CREATE TABLE imovel(
@@ -157,3 +159,13 @@ CREATE TABLE transacao(
     CONSTRAINT fk_ FOREIGN KEY(id_) REFERENCES  (),
     CONSTRAINT fk_ FOREIGN KEY(id_) REFERENCES  (),
 );
+
+
+MAPEMANETO DE TABELA
+
+ARRUMAR RELACIONAMENTO TOTAL EM ENTIDADE FRACAS DE IMOVEL PRO GENERALIZACAO
+
+tipo de dados do postgres no dicionario de dados
+
+fiador e indicacao tem q ser unico
+>>>>>>> 04965fd33da60dc1d73cf03f21998f48888fc2cb
