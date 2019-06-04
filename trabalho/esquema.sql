@@ -136,3 +136,9 @@ CREATE TABLE comercial(
     data_construcao DATE NOT NULL,
     CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel (id)
 ) ;
+
+MAPEMANETO DE TABELA
+
+ARRUMAR RELACIONAMENTO TOTAL EM ENTIDADE FRACAS DE IMOVEL PRO GENERALIZACAO
+
+tipo de dados do postgres no dicionario de dados
