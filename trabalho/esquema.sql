@@ -136,3 +136,24 @@ CREATE TABLE comercial(
     data_construcao DATE NOT NULL,
     CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel (id)
 ) ;
+
+CREATE TABLE forma_pagamento(
+    id SERIAL PRIMARY KEY,
+    descricao VARCHAR(255) NOT NULL
+) ;
+
+CREATE TABLE transacao(
+    id_numero_contrato SERIAL PRIMARY KEY,
+    id_cliente_funcionario INTEGER NOT NULL,
+    id_imovel INTEGER NOT NULL,
+    id_cliente_proprietario INTEGER NOT NULL,
+    id_cliente_usuario INTEGER NOT NULL,
+    id_forma_pagamento INTEGER NOT NULL,
+    valor_comissao NUMERIC(10,2) NOT NULL,
+    data_transacao DATE NOT NULL,
+    CONSTRAINT fk_ FOREIGN KEY(id_) REFERENCES  (),
+    CONSTRAINT fk_ FOREIGN KEY(id_) REFERENCES  (),
+    CONSTRAINT fk_ FOREIGN KEY(id_) REFERENCES  (),
+    CONSTRAINT fk_ FOREIGN KEY(id_) REFERENCES  (),
+    CONSTRAINT fk_ FOREIGN KEY(id_) REFERENCES  (),
+);
