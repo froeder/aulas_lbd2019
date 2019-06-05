@@ -10,7 +10,7 @@ CREATE TABLE endereco(
 );
 
 CREATE TABLE pessoa(
-    cpf INTEGER PRIMARY KEY,
+    cpf VARCHAR(11) PRIMARY KEY,
     nome VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     sexo VARCHAR(1) NOT NULL,
@@ -27,22 +27,25 @@ CREATE TABLE cargo(
 
 CREATE TABLE cliente_funcionario(
     id SERIAL PRIMARY KEY,
+    id_pessoa VARCHAR(11) NOT NULL,
     id_cargo INTEGER NOT NULL,
     login VARCHAR(255) NOT NULL,
     senha VARCHAR(128) NOT NULL,
     data_ingresso_imobiliaria DATE NOT NULL,
-    CONSTRAINT fk_cpf FOREIGN KEY (id) REFERENCES pessoa (cpf),
+    CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
     CONSTRAINT fk_cargo FOREIGN KEY (id_cargo) REFERENCES cargo (id)
 );
 
 CREATE TABLE cliente_proprietario(
     id SERIAL PRIMARY KEY,
-    CONSTRAINT fk_cpf FOREIGN KEY (id) REFERENCES pessoa (cpf)
+    id_pessoa VARCHAR(11) NOT NULL,
+    CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf)
 );
 
 CREATE TABLE cliente_usuario(
-    id SERIAL PRIMARY KEY,
-    CONSTRAINT fk_cpf FOREIGN KEY (id) REFERENCES pessoa (cpf)
+    id_pessoa VARCHAR(11) NOT NULL,
+    CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
+    PRIMARY KEY (id_pessoa)
 );
 
 CREATE TABLE telefone(
@@ -53,17 +56,17 @@ CREATE TABLE telefone(
 );
 
 CREATE TABLE fiador(
-    id_cliente INTEGER NOT NULL, 
-    id_pessoa INTEGER NOT NULL,
-    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id),
+    id_cliente VARCHAR(11) NOT NULL, 
+    id_pessoa VARCHAR(11) NOT NULL,
+    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id_pessoa),
     CONSTRAINT fk_id_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
     PRIMARY KEY (id_pessoa, id_cliente)
 );
 
 CREATE TABLE indicacao(
-    id_cliente INTEGER NOT NULL, 
-    id_pessoa INTEGER NOT NULL,
-    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id),
+    id_cliente VARCHAR(11) NOT NULL, 
+    id_pessoa VARCHAR(11) NOT NULL,
+    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente) REFERENCES cliente_usuario (id_pessoa),
     CONSTRAINT fk_id_pessoa FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
     PRIMARY KEY (id_pessoa, id_cliente)
 );
