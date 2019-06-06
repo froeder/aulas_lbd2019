@@ -2,11 +2,11 @@ CREATE TABLE endereco(
     id SERIAL PRIMARY KEY, 
     rua VARCHAR(255) NOT NULL,
     numero VARCHAR(10) NOT NULL,   
-    bairro VARCHAR(10) NOT NULL, 
-    cidade VARCHAR(10) NOT NULL, 
-    estado VARCHAR(10) NOT NULL, 
-    cep INTEGER NOT NULL, 
-    complemento VARCHAR(128) NOT NULL
+    bairro VARCHAR(30) NOT NULL, 
+    cidade VARCHAR(30) NOT NULL, 
+    estado VARCHAR(20) NOT NULL, 
+    cep VARCHAR(20) NOT NULL, 
+    complemento VARCHAR(128)
 );
 
 CREATE TABLE pessoa(
@@ -32,14 +32,33 @@ CREATE TABLE cliente_funcionario(
     login VARCHAR(255) NOT NULL,
     senha VARCHAR(128) NOT NULL,
     data_ingresso_imobiliaria DATE NOT NULL,
+    salario NUMERIC(10,2) NOT NULL,
     CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
     CONSTRAINT fk_cargo FOREIGN KEY (id_cargo) REFERENCES cargo (id)
+);
+
+
+CREATE TABLE imovel(
+    id SERIAL PRIMARY KEY,
+    id_endereco INTEGER NOT NULL, 
+    disponivel BOOLEAN NOT NULL,
+    disponivel_tipo VARCHAR(10) NOT NULL,
+    valor_sugerido NUMERIC(10,2) NOT NULL, 
+    valor_real NUMERIC(10,2) NOT NULL,
+    valor_repassse_imobiliaria NUMERIC(10,2),
+    descricao VARCHAR(255),
+    area NUMERIC(10,2) NOT NULL,
+    avaliacao NUMERIC(10,2),
+    imovel_tipo VARCHAR(20) NOT NULL,
+    CONSTRAINT fk_endereco FOREIGN KEY (id_endereco) REFERENCES endereco(id)
 );
 
 CREATE TABLE cliente_proprietario(
     id SERIAL PRIMARY KEY,
     id_pessoa VARCHAR(11) NOT NULL,
-    CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf)
+    id_imovel INTEGER NOT NULL,
+    CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
+    CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
 );
 
 CREATE TABLE cliente_usuario(
@@ -50,9 +69,10 @@ CREATE TABLE cliente_usuario(
 
 CREATE TABLE telefone(
     id SERIAL PRIMARY KEY, 
+    id_cliente_usuario VARCHAR(11) NOT NULL,
     telefone VARCHAR(100) NOT NULL, 
-    telfone_tipo VARCHAR(15) NOT NULL,
-    CONSTRAINT fk_id_cliente FOREIGN KEY (id) REFERENCES cliente_usuario (id)
+    telefone_tipo VARCHAR(15) NOT NULL,
+    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente_usuario) REFERENCES cliente_usuario (id_pessoa)
 );
 
 CREATE TABLE fiador(
@@ -71,21 +91,6 @@ CREATE TABLE indicacao(
     PRIMARY KEY (id_pessoa, id_cliente)
 );
 
-CREATE TABLE imovel(
-    id SERIAL PRIMARY KEY,
-    id_endereco INTEGER NOT NULL, 
-    id_cliente_proprietario INTEGER NOT NULL, 
-    disponivel BOOLEAN NOT NULL,
-    disponivel_tipo VARCHAR(10) NOT NULL,
-    valor_sugerido NUMERIC(10,2) NOT NULL, 
-    valor_real NUMERIC(10,2) NOT NULL,
-    valor_repassse_imobiliaria NUMERIC(10,2),
-    descricao VARCHAR(255),
-    area NUMERIC(10,2) NOT NULL,
-    avaliacao NUMERIC(10,2),
-    CONSTRAINT fk_cliente_proprietario FOREIGN KEY (id_cliente_proprietario) REFERENCES cliente_proprietario (id),
-    CONSTRAINT fk_endereco FOREIGN KEY (id_endereco) REFERENCES endereco(id)
-);
 
 CREATE TABLE foto(
     id SERIAL PRIMARY KEY,
@@ -152,14 +157,14 @@ CREATE TABLE transacao(
     id_cliente_funcionario INTEGER NOT NULL,
     id_imovel INTEGER NOT NULL,
     id_cliente_proprietario INTEGER NOT NULL,
-    id_cliente_usuario INTEGER NOT NULL,
+    id_cliente_usuario VARCHAR(11) NOT NULL,
     id_forma_pagamento INTEGER NOT NULL,
     valor_comissao NUMERIC(10,2) NOT NULL,
     data_transacao DATE NOT NULL,
     CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY(id_cliente_funcionario) REFERENCES  cliente_funcionario(id),
     CONSTRAINT fk_id_imovel FOREIGN KEY(id_imovel) REFERENCES  imovel(id),
     CONSTRAINT fk_id_cliente_proprietario FOREIGN KEY(id_cliente_proprietario) REFERENCES  cliente_proprietario(id),
-    CONSTRAINT fk_id_cliente_usuario FOREIGN KEY(id_cliente_usuario) REFERENCES  cliente_usuario(id),
+    CONSTRAINT fk_id_cliente_usuario FOREIGN KEY(id_cliente_usuario) REFERENCES  cliente_usuario(id_pessoa),
     CONSTRAINT fk_id_forma_pagamento FOREIGN KEY(id_forma_pagamento) REFERENCES  forma_pagamento(id)
 );
 
@@ -185,25 +190,25 @@ CREATE TABLE historico_imovel(
 
 CREATE TABLE historico_aluguel(
     id SERIAL PRIMARY KEY,
-    id_cliente_usuario INTEGER NOT NULL, 
+    id_cliente_usuario VARCHAR(11) NOT NULL, 
     id_imovel INTEGER NOT NULL,
     valor NUMERIC(10,2) NOT NULL,
     data_vencimento DATE NOT NULL, 
     data_pagamento DATE NOT NULL,
-    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente_usuario) REFERENCES  cliente_usuario(id), 
+    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente_usuario) REFERENCES  cliente_usuario(id_pessoa), 
     CONSTRAINT fk_id_imovel FOREIGN KEY (id_imovel) REFERENCES  imovel(id)
 );
 
 CREATE TABLE avaliacao(
     id SERIAL PRIMARY KEY,
-    id_cliente_usuario INTEGER NOT NULL,
+    id_cliente_usuario VARCHAR(11) NOT NULL,
     id_imovel INTEGER NOT NULL,
     nota_questao_1 INTEGER NOT NULL,
     nota_questao_2 INTEGER NOT NULL,
     nota_questao_3 INTEGER NOT NULL,
     nota_questao_4 INTEGER NOT NULL,
     nota_questao_5 INTEGER NOT NULL,
-    CONSTRAINT fk_id_cliente_usuario FOREIGN KEY (id_cliente_usuario) REFERENCES cliente_usuario(id),
+    CONSTRAINT fk_id_cliente_usuario FOREIGN KEY (id_cliente_usuario) REFERENCES cliente_usuario(id_pessoa),
     CONSTRAINT fk_id_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
 );
 
