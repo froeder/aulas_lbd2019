@@ -168,4 +168,3 @@ ARRUMAR RELACIONAMENTO TOTAL EM ENTIDADE FRACAS DE IMOVEL PRO GENERALIZACAO
 tipo de dados do postgres no dicionario de dados
 
 fiador e indicacao tem q ser unico
->>>>>>> 04965fd33da60dc1d73cf03f21998f48888fc2cb
