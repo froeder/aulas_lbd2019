@@ -1,25 +1,32 @@
--- Para atualizar o salario para cada transacao do funcionario
-CREATE OR REPLACE FUNCTION fn_atualiza_salario RETURN TRIGGER AS $$
+-- Para atribuir o salario do funcionario pelo id
+CREATE OR REPLACE FUNCTION fn_atribui_salario() RETURNS TRIGGER AS $$
+DECLARE salario_temp REAL := 0.0 ;
 BEGIN 
-    UPDATE TABLE cliente_funcionario SET salario = old.salario + seilaoq.valor_comissao WHERE id_pessoa = seilaoque.id_cliente_funcionario;
+    SELECT INTO salario_temp salario_base FROM cargo where id = new.id_cargo ;
+ 	UPDATE cliente_funcionario SET salario = salario_temp WHERE id_pessoa = NEW.id_pessoa ;
+    RETURN NEW ;
+END ;
+
+$$ language 'plpgsql' ;
+
+CREATE TRIGGER tr_atribui_salario
+AFTER INSERT ON cliente_funcionario
+FOR EACH ROW
+EXECUTE PROCEDURE fn_atribui_salario() ;
+
+
+-- Para atualizar o salario para cada transacao do funcionario
+CREATE OR REPLACE FUNCTION fn_atualiza_salario() RETURNS TRIGGER AS $$
+BEGIN 
+    UPDATE cliente_funcionario SET salario = salario + NEW.valor_comissao WHERE id_pessoa = NEW.id_cliente_funcionario;
+    RETURN NEW ;
 END ;
 $$ language 'plpgsql';
 
 CREATE TRIGGER tr_atualiza_salario 
-AFTER INSERT ON transacao 
+AFTER INSERT OR UPDATE ON transacao 
 FOR EACH ROW
 EXECUTE PROCEDURE fn_atualiza_salario() ;
 
 
 
--- Para atribuir o salario do funcionario pelo id
-CREATE OR REPLACE FUNCTION fn_atribui_salario RETURN TRIGGER ASS $$
-BEGIN
-    UPDATE TABLE funcionario as f SET f.salario = new.salario_base WHERE cargo = id ;
-END ;
-$$ language 'plpgsql' ;
-
-CREATE TRIGGER tr_atribui_salario
-AFTER INSERT ON funcionario
-FOR EACH ROW
-EXECUTE PROCEDURE fn_atribui_salario ;

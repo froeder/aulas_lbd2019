@@ -26,13 +26,12 @@ CREATE TABLE cargo(
 );
 
 CREATE TABLE cliente_funcionario(
-    id SERIAL PRIMARY KEY,
-    id_pessoa VARCHAR(11) NOT NULL,
+    id_pessoa VARCHAR(11) PRIMARY KEY,
     id_cargo INTEGER NOT NULL,
     login VARCHAR(255) NOT NULL,
     senha VARCHAR(128) NOT NULL,
     data_ingresso_imobiliaria DATE NOT NULL,
-    salario NUMERIC(10,2) NOT NULL,
+    salario NUMERIC(10,2) ,
     CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
     CONSTRAINT fk_cargo FOREIGN KEY (id_cargo) REFERENCES cargo (id)
 );
@@ -54,17 +53,17 @@ CREATE TABLE imovel(
 );
 
 CREATE TABLE cliente_proprietario(
-    id SERIAL PRIMARY KEY,
-    id_pessoa VARCHAR(11) NOT NULL,
+    id_pessoa VARCHAR(11)NOT NULL,
     id_imovel INTEGER NOT NULL,
     CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
-    CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
+    CONSTRAINT fk_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id),
+    PRIMARY KEY (id_pessoa, id_imovel)
 );
+-- COMENTAR sobre
 
 CREATE TABLE cliente_usuario(
-    id_pessoa VARCHAR(11) NOT NULL,
-    CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf),
-    PRIMARY KEY (id_pessoa)
+    id_pessoa VARCHAR(11) PRIMARY KEY,
+    CONSTRAINT fk_cpf FOREIGN KEY (id_pessoa) REFERENCES pessoa (cpf)
 );
 
 CREATE TABLE telefone(
@@ -154,38 +153,39 @@ CREATE TABLE forma_pagamento(
 
 CREATE TABLE transacao(
     id_numero_contrato SERIAL PRIMARY KEY,
-    id_cliente_funcionario INTEGER NOT NULL,
+    id_cliente_funcionario VARCHAR(11) NOT NULL,
     id_imovel INTEGER NOT NULL,
-    id_cliente_proprietario INTEGER NOT NULL,
+    id_cliente_proprietario VARCHAR(11) NOT NULL,
     id_cliente_usuario VARCHAR(11) NOT NULL,
     id_forma_pagamento INTEGER NOT NULL,
     valor_comissao NUMERIC(10,2) NOT NULL,
+    valor NUMERIC(10,2) NOT NULL, 
     data_transacao DATE NOT NULL,
-    CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY(id_cliente_funcionario) REFERENCES  cliente_funcionario(id),
+    CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY(id_cliente_funcionario) REFERENCES  cliente_funcionario(id_pessoa),
     CONSTRAINT fk_id_imovel FOREIGN KEY(id_imovel) REFERENCES  imovel(id),
-    CONSTRAINT fk_id_cliente_proprietario FOREIGN KEY(id_cliente_proprietario) REFERENCES  cliente_proprietario(id),
+    CONSTRAINT fk_id_cliente_proprietario FOREIGN KEY(id_cliente_proprietario) REFERENCES  cliente_proprietario(id_pessoa),
     CONSTRAINT fk_id_cliente_usuario FOREIGN KEY(id_cliente_usuario) REFERENCES  cliente_usuario(id_pessoa),
     CONSTRAINT fk_id_forma_pagamento FOREIGN KEY(id_forma_pagamento) REFERENCES  forma_pagamento(id)
 );
 
 CREATE TABLE comissao(
     id SERIAL PRIMARY KEY, 
-    id_cliente_funcionario INTEGER NOT NULL, 
+    id_cliente_funcionario VARCHAR(11) NOT NULL, 
     id_transacao INTEGER NOT NULL,
     mes VARCHAR(15) NOT NULL,
     valor NUMERIC(10,2) NOT NULL,
-    CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY (id_cliente_funcionario) references cliente_funcionario(id),
+    CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY (id_cliente_funcionario) references cliente_funcionario(id_pessoa),
     CONSTRAINT fk_id_transacao FOREIGN KEY (id_transacao) references transacao(id_numero_contrato)
 );
 
 CREATE TABLE historico_imovel(
     id SERIAL PRIMARY KEY, 
     id_imovel INTEGER NOT NULL, 
-    id_cliente_funcionario INTEGER NOT  NULL, 
+    id_cliente_funcionario VARCHAR(11) NOT  NULL, 
     data_colocado DATE NOT NULL, 
     data_alteracao DATE NOT NULL, 
     CONSTRAINT fk_id_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id),
-    CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY (id_cliente_funcionario) REFERENCES cliente_funcionario(id)
+    CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY (id_cliente_funcionario) REFERENCES cliente_funcionario(id_pessoa)
 );
 
 CREATE TABLE historico_aluguel(
