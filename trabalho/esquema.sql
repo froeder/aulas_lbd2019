@@ -40,10 +40,10 @@ CREATE TABLE cliente_funcionario(
 CREATE TABLE imovel(
     id SERIAL PRIMARY KEY,
     id_endereco INTEGER NOT NULL, 
-    disponivel BOOLEAN NOT NULL,
-    disponivel_tipo VARCHAR(10) NOT NULL,
+    disponivel BOOLEAN,
+    disponivel_tipo VARCHAR(10) L,
     valor_sugerido NUMERIC(10,2) NOT NULL, 
-    valor_real NUMERIC(10,2) NOT NULL,
+    valor_real NUMERIC(10,2) ,
     valor_repassse_imobiliaria NUMERIC(10,2),
     descricao VARCHAR(255),
     area NUMERIC(10,2) NOT NULL,
@@ -161,9 +161,11 @@ CREATE TABLE transacao(
     valor_comissao NUMERIC(10,2) NOT NULL,
     valor NUMERIC(10,2) NOT NULL, 
     data_transacao DATE NOT NULL,
+    tipo VARCHAR(10) NOT NULL,
+    CHECK (tipo IN('VENDA', 'ALUGUEL')),
     CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY(id_cliente_funcionario) REFERENCES  cliente_funcionario(id_pessoa),
     CONSTRAINT fk_id_imovel FOREIGN KEY(id_imovel) REFERENCES  imovel(id),
-    CONSTRAINT fk_id_cliente_proprietario FOREIGN KEY(id_cliente_proprietario) REFERENCES  cliente_proprietario(id_pessoa),
+    CONSTRAINT fk_id_cliente_proprietario FOREIGN KEY(id_cliente_proprietario, id_imovel) REFERENCES  cliente_proprietario(id_pessoa, id_imovel),
     CONSTRAINT fk_id_cliente_usuario FOREIGN KEY(id_cliente_usuario) REFERENCES  cliente_usuario(id_pessoa),
     CONSTRAINT fk_id_forma_pagamento FOREIGN KEY(id_forma_pagamento) REFERENCES  forma_pagamento(id)
 );
@@ -182,8 +184,8 @@ CREATE TABLE historico_imovel(
     id SERIAL PRIMARY KEY, 
     id_imovel INTEGER NOT NULL, 
     id_cliente_funcionario VARCHAR(11) NOT  NULL, 
-    data_colocado DATE NOT NULL, 
-    data_alteracao DATE NOT NULL, 
+    data_colocado DATE , 
+    data_alteracao DATE, 
     CONSTRAINT fk_id_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id),
     CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY (id_cliente_funcionario) REFERENCES cliente_funcionario(id_pessoa)
 );
@@ -193,8 +195,8 @@ CREATE TABLE historico_aluguel(
     id_cliente_usuario VARCHAR(11) NOT NULL, 
     id_imovel INTEGER NOT NULL,
     valor NUMERIC(10,2) NOT NULL,
-    data_vencimento DATE NOT NULL, 
-    data_pagamento DATE NOT NULL,
+    data_vencimento VARCHAR(10) NOT NULL, 
+    data_pagamento DATE,
     CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente_usuario) REFERENCES  cliente_usuario(id_pessoa), 
     CONSTRAINT fk_id_imovel FOREIGN KEY (id_imovel) REFERENCES  imovel(id)
 );

@@ -82,21 +82,21 @@ INSERT INTO endereco(rua, numero, bairro, cidade, estado, cep, complemento) VALU
 INSERT INTO endereco(rua, numero, bairro, cidade, estado, cep, complemento) VALUES ('Avenida Esbertalina Barbosa Damiani', 621, 'Guriri Norte', 'São Mateus', 'ES','29946-490','Sala 23');
 INSERT INTO endereco(rua, numero, bairro, cidade, estado, cep ) VALUES ('Rua Arlindo Nogueira', 333, 'Centro', 'Teresina','PI', '64000-290');
 
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (1, true, 'VENDA',40000000,35000000, 35000, 'Casa de luxo', 200, 'CASA') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (2, false,'ALUGUEL', 1000.00, 900.00, 200.00, 'Kitnet Simples', 45, 'CASA') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (3, false,'ALUGUEL', 2000.00, 2000.00, 400.00, 'Apartamento no centro', 60, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (4, true, 'VENDA',400000.00, 350000.00, 3500.00, 'Casa em vila', 94, 'CASA') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (5, true, 'VENDA',1000000.00, 1200000.00, 10000.00, 'Casa no dhama vilage',87, 'CASA') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (6, true, 'VENDA',500000.00, 600000.00, 90000.00, 'Apartamento no centro',45, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (7, true, 'VENDA',50000.00, 90000.00, 20000.00, 'Terreno plano', 60, 'TERRENO') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (8, false, 'VENDA',198000.00, 250000.00, 60000.00, 'Casa simples', 78, 'CASA') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (9, true, 'ALUGUEL',6000.00, 5500.00, 550.00, 'Sala comercial', 25, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (10, false, 'VENDA',2500000.00, 3000000.00, 1000000.00, 'Apartamento beiramar', 85, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (15, true, 'VENDA', 450000.00, 400000.00, 10000.00, 'Casa no centro', 75, 'CASA') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (16, true, 'ALUGUEL',2500.00, 2000.00, 400.00, 'Salão Comercial', 30, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (17, true, 'ALUGUEL',650.00, 750.00, 200.00, 'Kitnet', 40, 'CASA') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (18, true, 'ALUGUEL',10000.00, 8000.00, 1600.00, 'Galpão', 60, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, disponivel, disponivel_tipo, valor_sugerido, valor_real, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (19, true, 'VENDA',45000.00, 56000.00, 13000.00, 'Terreno com declive', 45, 'TERRENO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (1, 40000000, 35000, 'Casa de luxo', 200, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (2, 1000.00, 200.00, 'Kitnet Simples', 45, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (3, 2000.00, 400.00, 'Apartamento no centro', 60, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (4, 400000.00, 3500.00, 'Casa em vila', 94, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (5, 1000000.00, 10000.00, 'Casa no dhama vilage',87, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (6, 500000.00, 90000.00, 'Apartamento no centro',45, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (7, 50000.00, 20000.00, 'Terreno plano', 60, 'TERRENO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (8, 198000.00, 60000.00, 'Casa simples', 78, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (9, 6000.00, 550.00, 'Sala comercial', 25, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (10,2500000.00, 1000000.00, 'Apartamento beiramar', 85, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (15,450000.00, 10000.00, 'Casa no centro', 75, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (16,2500.00, 400.00, 'Salão Comercial', 30, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (17,650.00, 200.00, 'Kitnet', 40, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (18,10000.00, 1600.00, 'Galpão', 60, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (19,45000.00, 13000.00, 'Terreno com declive', 45, 'TERRENO') ;
 
 INSERT INTO quartos(quantidade_quarto, quantidade_suite, quantidade_sala_estar, quantidade_sala_jantar, numero_vagas_garagem, armario_embutido) VALUES (3,1,1,1,1,false) ;
 INSERT INTO quartos(quantidade_quarto, quantidade_suite, quantidade_sala_estar, quantidade_sala_jantar, numero_vagas_garagem, armario_embutido) VALUES (2,1,1,1,2,true) ;
