@@ -41,10 +41,10 @@ CREATE TABLE imovel(
     id SERIAL PRIMARY KEY,
     id_endereco INTEGER NOT NULL, 
     disponivel BOOLEAN,
-    disponivel_tipo VARCHAR(10) L,
+    disponivel_tipo VARCHAR(10),
     valor_sugerido NUMERIC(10,2) NOT NULL, 
     valor_real NUMERIC(10,2) ,
-    valor_repassse_imobiliaria NUMERIC(10,2),
+    valor_repasse_imobiliaria NUMERIC(10,2),
     descricao VARCHAR(255),
     area NUMERIC(10,2) NOT NULL,
     avaliacao NUMERIC(10,2),
@@ -190,16 +190,6 @@ CREATE TABLE historico_imovel(
     CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY (id_cliente_funcionario) REFERENCES cliente_funcionario(id_pessoa)
 );
 
-CREATE TABLE historico_aluguel(
-    id SERIAL PRIMARY KEY,
-    id_cliente_usuario VARCHAR(11) NOT NULL, 
-    id_imovel INTEGER NOT NULL,
-    valor NUMERIC(10,2) NOT NULL,
-    data_vencimento VARCHAR(10) NOT NULL, 
-    data_pagamento DATE,
-    CONSTRAINT fk_id_cliente FOREIGN KEY (id_cliente_usuario) REFERENCES  cliente_usuario(id_pessoa), 
-    CONSTRAINT fk_id_imovel FOREIGN KEY (id_imovel) REFERENCES  imovel(id)
-);
 
 CREATE TABLE avaliacao(
     id SERIAL PRIMARY KEY,
