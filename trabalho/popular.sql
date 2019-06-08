@@ -23,6 +23,7 @@ INSERT INTO cliente_usuario(id_pessoa) VALUES ('75315982462');
 INSERT INTO cliente_usuario(id_pessoa) VALUES ('96325874102');
 INSERT INTO cliente_usuario(id_pessoa) VALUES ('78965412358');
 
+
 INSERT INTO fiador(id_pessoa, id_cliente) VALUES ('78965412358', '41383062854');
 INSERT INTO fiador(id_pessoa, id_cliente) VALUES ('66984412365', '41383062854');
 INSERT INTO fiador(id_pessoa, id_cliente) VALUES ('12345678910', '96325874125');
@@ -53,14 +54,12 @@ INSERT INTO telefone(id_cliente_usuario, telefone, telefone_tipo) VALUES ('66984
 INSERT INTO telefone(id_cliente_usuario, telefone, telefone_tipo) VALUES ('32165478943','67999211888', 'Trabalho' );
 INSERT INTO telefone(id_cliente_usuario, telefone, telefone_tipo) VALUES ('36985214795','67996658888', 'Casa' );
 
-INSERT INTO fiador(id_cliente, id_pessoa) VALUES ('41383062854', '78965412358');
-INSERT INTO fiador(id_cliente, id_pessoa) VALUES ('41383062854', '66984412365');
-INSERT INTO fiador(id_cliente, id_pessoa) VALUES ('96325874125', '11298765326');
-INSERT INTO fiador(id_cliente, id_pessoa) VALUES ('96325874125', '74125896333');
-INSERT INTO fiador(id_cliente, id_pessoa) VALUES ('66984412365', '96325874125');
-INSERT INTO fiador(id_cliente, id_pessoa) VALUES ('66984412365', '32165478943');
-INSERT INTO fiador(id_cliente, id_pessoa) VALUES ('36985214795', '75315982462');
-INSERT INTO fiador(id_cliente, id_pessoa) VALUES ('36985214795', '78965412358');
+INSERT INTO indicacao(id_cliente, id_pessoa) VALUES ('96325874125', '11298765326');
+INSERT INTO indicacao(id_cliente, id_pessoa) VALUES ('96325874125', '74125896333');
+INSERT INTO indicacao(id_cliente, id_pessoa) VALUES ('66984412365', '96325874125');
+INSERT INTO indicacao(id_cliente, id_pessoa) VALUES ('66984412365', '32165478943');
+INSERT INTO indicacao(id_cliente, id_pessoa) VALUES ('36985214795', '75315982462');
+INSERT INTO indicacao(id_cliente, id_pessoa) VALUES ('36985214795', '78965412358');
 
 INSERT INTO endereco(rua, numero, bairro, cidade, estado, cep) VALUES ('Rua Pereira Estéfano', 2110, 'Vila da Saúde', 'São Paulo', 'SP', '04144-070');
 INSERT INTO endereco(rua, numero, bairro, cidade, estado, cep) VALUES ('Rua Cândido Portinari', 654, 'Real Parque', 'São José', 'SC', '78945-621');
@@ -87,41 +86,45 @@ INSERT INTO endereco(rua, numero, bairro, cidade, estado, cep, complemento) VALU
 INSERT INTO endereco(rua, numero, bairro, cidade, estado, cep, complemento) VALUES ('Avenida Esbertalina Barbosa Damiani', 621, 'Guriri Norte', 'São Mateus', 'ES','29946-490','Sala 23');
 INSERT INTO endereco(rua, numero, bairro, cidade, estado, cep ) VALUES ('Rua Arlindo Nogueira', 333, 'Centro', 'Teresina','PI', '64000-290');
 
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (1, 40000000, 35000, 'Casa de luxo', 200, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (2, 1000.00, 200.00, 'Kitnet Simples', 45, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (3, 2000.00, 400.00, 'Apartamento no centro', 60, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (4, 400000.00, 3500.00, 'Casa em vila', 94, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (5, 1000000.00, 10000.00, 'Casa no dhama vilage',87, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (6, 500000.00, 90000.00, 'Apartamento no centro',45, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (7, 50000.00, 20000.00, 'Terreno plano', 60, 'TERRENO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (8, 198000.00, 60000.00, 'Casa simples', 78, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (9, 6000.00, 550.00, 'Sala comercial', 25, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (10,2500000.00, 1000000.00, 'Apartamento beiramar', 85, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (15,450000.00, 10000.00, 'Casa no centro', 75, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (16,2500.00, 400.00, 'Salão Comercial', 30, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (17,650.00, 200.00, 'Kitnet', 40, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (18,10000.00, 1600.00, 'Galpão', 60, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (19,45000.00, 13000.00, 'Terreno com declive', 45, 'TERRENO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (1, 40000000, 35000, 'Casa de luxo', 200, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (2, 1000.00, 200.00, 'Kitnet Simples', 45, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (3, 2000.00, 400.00, 'Apartamento no centro', 60, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (4, 400000.00, 3500.00, 'Casa em vila', 94, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (5, 1000000.00, 10000.00, 'Casa no dhama vilage',87, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (6, 500000.00, 90000.00, 'Apartamento no centro',45, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (7, 50000.00, 20000.00, 'Terreno plano', 60, 'TERRENO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (8, 198000.00, 60000.00, 'Casa simples', 78, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (9, 6000.00, 550.00, 'Sala comercial', 25, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (10,2500000.00, 1000000.00, 'Apartamento beiramar', 85, 'APARTAMENTO') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (15,450000.00, 10000.00, 'Casa no centro', 75, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (16,2500.00, 400.00, 'Salão Comercial', 30, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (17,650.00, 200.00, 'Kitnet', 40, 'CASA') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (18,10000.00, 1600.00, 'Galpão', 60, 'COMERCIAL') ;
-INSERT INTO imovel(id_endereco, valor_sugerido, valor_repassse_imobiliaria, descricao, area, imovel_tipo) VALUES (19,45000.00, 13000.00, 'Terreno com declive', 45, 'TERRENO') ;
+
+
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (1, 40000000, 35, 'Casa de luxo', 200, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (2, 1000.00, 20, 'Kitnet Simples', 45, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (3, 2000.00, 40, 'Apartamento no centro', 60, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (4, 400000.00, 35, 'Casa em vila', 94, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (5, 1000000.00, 10, 'Casa no dhama vilage',87, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (6, 500000.00, 9, 'Apartamento no centro',45, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (7, 50000.00, 20, 'Terreno plano', 60, 'TERRENO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (8, 198000.00, 60, 'Casa simples', 78, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (9, 6000.00, 55, 'Sala comercial', 25, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (10,2500000.00, 10, 'Apartamento beiramar', 85, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (15,450000.00, 10, 'Casa no centro', 75, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (16,2500.00, 40, 'Salão Comercial', 30, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (17,650.00, 20, 'Kitnet', 40, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (18,10000.00, 16, 'Galpão', 60, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (19,45000.00, 13, 'Terreno com declive', 45, 'TERRENO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (1, 40000000, 35, 'Casa de luxo', 200, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (2, 1000.00, 20, 'Kitnet Simples', 45, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (3, 2000.00, 40, 'Apartamento no centro', 60, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (4, 400000.00, 35, 'Casa em vila', 94, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (5, 1000000.00, 10, 'Casa no dhama vilage',87, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (6, 500000.00, 90, 'Apartamento no centro',45, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (7, 50000.00, 20, 'Terreno plano', 60, 'TERRENO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (8, 198000.00, 60, 'Casa simples', 78, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (9, 6000.00, 55, 'Sala comercial', 25, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (10,2500000.00, 10, 'Apartamento beiramar', 85, 'APARTAMENTO') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (15,450000.00, 10, 'Casa no centro', 75, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (16,2500.00, 40, 'Salão Comercial', 30, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (17,650.00, 20, 'Kitnet', 40, 'CASA') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (18,10000.00, 16, 'Galpão', 60, 'COMERCIAL') ;
+INSERT INTO imovel(id_endereco, valor_sugerido, valor_repasse_imobiliaria, descricao, area, imovel_tipo) VALUES (19,45000.00, 13, 'Terreno com declive', 45, 'TERRENO') ;
+
 
 INSERT INTO quartos(quantidade_quarto, quantidade_suite, quantidade_sala_estar, quantidade_sala_jantar, numero_vagas_garagem, armario_embutido) VALUES (3,1,1,1,1,false) ;
 INSERT INTO quartos(quantidade_quarto, quantidade_suite, quantidade_sala_estar, quantidade_sala_jantar, numero_vagas_garagem, armario_embutido) VALUES (2,1,1,1,2,true) ;
 INSERT INTO quartos(quantidade_quarto, quantidade_suite, quantidade_sala_estar, quantidade_sala_jantar, numero_vagas_garagem, armario_embutido) VALUES (4,2,2,2,5,true) ;
 INSERT INTO quartos(quantidade_quarto, quantidade_suite, quantidade_sala_estar, quantidade_sala_jantar, numero_vagas_garagem, armario_embutido) VALUES (2,1,1,1,1,false) ;
+
 
 INSERT INTO casa(id_imoveL, id_quartos, data_construcao) VALUES(27,3, '01-05-1999') ;
 INSERT INTO casa(id_imoveL, id_quartos, data_construcao) VALUES(1,1, '01-10-2001') ;
@@ -131,16 +134,20 @@ INSERT INTO casa(id_imoveL, id_quartos, data_construcao) VALUES(5,2, '03-11-2011
 INSERT INTO casa(id_imoveL, id_quartos, data_construcao) VALUES(8,1, '01-12-2018') ;
 INSERT INTO casa(id_imoveL, id_quartos, data_construcao) VALUES(11,1, '01-05-2019') ;
 
+
 INSERT INTO apartamento(id_imovel, id_quartos, andar, valor_condominio, possui_porteiro) VALUES (3,1,'1', 300.00,true);
 INSERT INTO apartamento(id_imovel, id_quartos, andar, valor_condominio, possui_porteiro) VALUES (6,2,'Terreo',200.00,false);
 INSERT INTO apartamento(id_imovel, id_quartos, andar, valor_condominio, possui_porteiro) VALUES (10,3,'Cobertura',500.00,false);
 
+
 INSERT INTO terreno(id_imovel,largura,comprimento,topologia) VALUES (7,10,20,'Nenhum');
 INSERT INTO terreno(id_imovel,largura,comprimento,topologia) VALUES (15,20,30, 'Aclive');
+
 
 INSERT INTO comercial(id_imovel, quantidade_banheiro, quantidade_quartos, data_construcao) VALUES (9,1,2,'05-12-2015') ;
 INSERT INTO comercial(id_imovel, quantidade_banheiro, quantidade_quartos, data_construcao) VALUES (12,2,3, '06-05-2018') ;
 INSERT INTO comercial(id_imovel, quantidade_banheiro, quantidade_quartos, data_construcao) VALUES (14,1,1,'11-12-2013') ;
+
 
 INSERT INTO cliente_proprietario(id_pessoa, id_imovel) VALUES ('96325874125', 1);
 INSERT INTO cliente_proprietario(id_pessoa, id_imovel) VALUES ('41383062854', 2);
@@ -163,6 +170,7 @@ INSERT INTO cliente_proprietario(id_pessoa, id_imovel) VALUES ('78965412358',19)
 INSERT INTO cliente_proprietario(id_pessoa, id_imovel) VALUES ('41383062854', 20);
 INSERT INTO cliente_proprietario(id_pessoa, id_imovel) VALUES ('96325874102', 21);
 
+
 INSERT INTO forma_pagamento(descricao) VALUES ('Cartão de crédito');
 INSERT INTO forma_pagamento(descricao) VALUES ('Dinheiro');
 INSERT INTO forma_pagamento(descricao) VALUES ('Débito em conta');
@@ -183,3 +191,5 @@ INSERT INTO transacao(id_cliente_funcionario,id_imovel, id_cliente_proprietario,
 INSERT INTO transacao(id_cliente_funcionario,id_imovel, id_cliente_proprietario, id_cliente_usuario, id_forma_pagamento, valor_comissao,valor, data_transacao, tipo) VALUES('11298765326', 13 , '96325874102', '32165478943', 2 , 9853.00 , 232910.00 ,  '09-08-2018', 'VENDA');
 INSERT INTO transacao(id_cliente_funcionario,id_imovel, id_cliente_proprietario, id_cliente_usuario, id_forma_pagamento, valor_comissao,valor, data_transacao, tipo) VALUES('74125896333', 14 , '11298765326', '66984412365', 3 , 20030.00 , 9943020.00 ,  '04-05-2016', 'ALUGUEL');
 INSERT INTO transacao(id_cliente_funcionario,id_imovel, id_cliente_proprietario, id_cliente_usuario, id_forma_pagamento, valor_comissao,valor, data_transacao, tipo) VALUES('78965412358', 15 , '41383062854', '96325874125', 3 , 20123.21 , 4000000.00 ,  '05-04-2016', 'VENDA');
+
+

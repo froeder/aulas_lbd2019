@@ -159,6 +159,7 @@ CREATE TABLE transacao(
     id_cliente_usuario VARCHAR(11) NOT NULL,
     id_forma_pagamento INTEGER NOT NULL,
     valor_comissao NUMERIC(10,2) NOT NULL,
+    valor_repasse_imobiliaria NUMERIC(10,2),
     valor NUMERIC(10,2) NOT NULL, 
     data_transacao DATE NOT NULL,
     tipo VARCHAR(10) NOT NULL,

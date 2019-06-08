@@ -92,3 +92,20 @@ CREATE TRIGGER tr_atualiza_tabela_comissao
 AFTER INSERT OR UPDATE ON transacao
 FOR EACH ROW
 EXECUTE PROCEDURE fn_atualiza_comissao() ;
+
+
+-- Para atualizar repasse imobiliaria
+CREATE OR REPLACE FUNCTION fn_atualiza_repasse() RETURNS TRIGGER AS $$
+    DECLARE repasse real := 0.0 ;
+    BEGIN 
+        SELECT INTO repasse valor_repasse_imobiliaria FROM imovel WHERE id = NEW.id_imovel ;
+        UPDATE transacao SET valor_repasse_imobiliaria = (new.valor / 100) * repasse WHERE id_imovel = NEW.id_imovel;
+    RETURN NEW ;
+    END ;
+$$ LANGUAGE 'plpgsql' ;
+
+
+CREATE TRIGGER tr_atualiza_repasse
+AFTER INSERT ON transacao 
+FOR EACH ROW
+EXECUTE PROCEDURE fn_atualiza_repasse() ;
