@@ -102,10 +102,19 @@ CREATE OR REPLACE FUNCTION fn_atualiza_repasse() RETURNS TRIGGER AS $$
         UPDATE transacao SET valor_repasse_imobiliaria = (new.valor / 100) * repasse WHERE id_imovel = NEW.id_imovel;
     RETURN NEW ;
     END ;
-$$ LANGUAGE 'plpgsql' ;
-
+$$ language 'plpgsql' ;
 
 CREATE TRIGGER tr_atualiza_repasse
 AFTER INSERT ON transacao 
 FOR EACH ROW
 EXECUTE PROCEDURE fn_atualiza_repasse() ;
+
+
+-- Criar View para passar total real do repasse 
+
+CREATE OR REPLACE VIEW v_total_repasse AS
+SELECT valor_repasse_imobiliaria, id_cliente_proprietario FROM transacao GROUP BY valor_repasse_imobiliaria, id_cliente_proprietario ORDER BY valor_repasse_imobiliaria DESC;
+
+SELECT * FROM v_total_repasse ;
+
+
