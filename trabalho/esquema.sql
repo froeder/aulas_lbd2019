@@ -191,16 +191,16 @@ CREATE TABLE historico_imovel(
     CONSTRAINT fk_id_cliente_funcionario FOREIGN KEY (id_cliente_funcionario) REFERENCES cliente_funcionario(id_pessoa)
 );
 
-
 CREATE TABLE avaliacao(
     id SERIAL PRIMARY KEY,
     id_cliente_usuario VARCHAR(11) NOT NULL,
     id_imovel INTEGER NOT NULL,
-    nota_questao_1 INTEGER NOT NULL,
-    nota_questao_2 INTEGER NOT NULL,
-    nota_questao_3 INTEGER NOT NULL,
-    nota_questao_4 INTEGER NOT NULL,
-    nota_questao_5 INTEGER NOT NULL,
+    nota_questao_1 NUMERIC(10,2) NOT NULL CHECK(nota_questao_1 >= 1 AND nota_questao_1 <= 5),
+    nota_questao_2 NUMERIC(10,2) NOT NULL CHECK(nota_questao_2 >= 1 AND nota_questao_2 <= 5),
+    nota_questao_3 NUMERIC(10,2) NOT NULL CHECK(nota_questao_3 >= 1 AND nota_questao_3 <= 5),
+    nota_questao_4 NUMERIC(10,2) NOT NULL CHECK(nota_questao_4 >= 1 AND nota_questao_4 <= 5),
+    nota_questao_5 NUMERIC(10,2) NOT NULL CHECK(nota_questao_5 >= 1 AND nota_questao_5 <= 5),
+    media NUMERIC(10, 2) ,
     CONSTRAINT fk_id_cliente_usuario FOREIGN KEY (id_cliente_usuario) REFERENCES cliente_usuario(id_pessoa),
     CONSTRAINT fk_id_imovel FOREIGN KEY (id_imovel) REFERENCES imovel(id)
 );

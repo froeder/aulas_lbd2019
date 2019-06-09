@@ -111,10 +111,36 @@ EXECUTE PROCEDURE fn_atualiza_repasse() ;
 
 
 -- Criar View para passar total real do repasse 
-
 CREATE OR REPLACE VIEW v_total_repasse AS
 SELECT valor_repasse_imobiliaria, id_cliente_proprietario FROM transacao GROUP BY valor_repasse_imobiliaria, id_cliente_proprietario ORDER BY valor_repasse_imobiliaria DESC;
 
-SELECT * FROM v_total_repasse ;
+-- View para fazer a media das avaliacoes
+CREATE OR REPLACE VIEW v_media_avaliacao AS
+SELECT ((nota_questao_1 + nota_questao_2 + nota_questao_3 + nota_questao_4 + nota_questao_5) / 5 ) AS media_parcial, id_imovel FROM avaliacao ;
+
+SELECT * FROM v_media_avaliacao ;
 
 
+-- Trigger para atualizar média das avaliações
+CREATE OR REPLACE FUNCTION fn_atualiza_media_avaliacao() RETURNS TRIGGER AS $$
+    DECLARE media_view real := 0.0 ;
+    DECLARE media_imovel real := 0.0 ;
+    DECLARE media_total real := 0.0 ;
+    BEGIN
+        SELECT INTO media_view v.media_parcial FROM v_media_avaliacao AS v WHERE v.id_imovel = NEW.id_imovel ;
+        SELECT INTO media_imovel i.avaliacao FROM imovel AS i WHERE i.id = NEW.id_imovel ;
+        IF(media_imovel = 0.0) THEN
+            UPDATE imovel SET avaliacao = media_view WHERE id = NEW.id_imovel ;
+        END IF;
+        IF(media_imovel > 0.0) THEN
+            media_total = (media_view + media_imovel) / 2 ;
+            UPDATE imovel SET avaliacao = media_total WHERE id = NEW.id_imovel ;
+        END IF;
+        RETURN NEW ;
+    END ;
+$$ language 'plpgsql' ;
+
+CREATE TRIGGER tr_atualiza_media
+AFTER INSERT ON avaliacao
+FOR EACH ROW
+EXECUTE PROCEDURE fn_atualiza_media_avaliacao() ;

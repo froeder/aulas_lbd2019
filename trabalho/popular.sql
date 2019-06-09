@@ -192,4 +192,26 @@ INSERT INTO transacao(id_cliente_funcionario,id_imovel, id_cliente_proprietario,
 INSERT INTO transacao(id_cliente_funcionario,id_imovel, id_cliente_proprietario, id_cliente_usuario, id_forma_pagamento, valor_comissao,valor, data_transacao, tipo) VALUES('74125896333', 14 , '11298765326', '66984412365', 3 , 20030.00 , 9943020.00 ,  '04-05-2016', 'ALUGUEL');
 INSERT INTO transacao(id_cliente_funcionario,id_imovel, id_cliente_proprietario, id_cliente_usuario, id_forma_pagamento, valor_comissao,valor, data_transacao, tipo) VALUES('78965412358', 15 , '41383062854', '96325874125', 3 , 20123.21 , 4000000.00 ,  '05-04-2016', 'VENDA');
 
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 1, 3, 1, 2, 1, 2) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 2, 1, 1, 2, 5, 3) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 3, 2, 1, 2, 4, 4) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 4, 3, 5, 3, 3, 5) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 5, 4, 5, 3, 2, 4) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 6, 5, 5, 3, 1, 2) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 7, 4, 4, 4, 5, 3) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 8, 3, 4, 5, 4, 4) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 9, 2, 3, 4, 3, 5) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 10, 1, 2, 5, 2, 2) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 12, 1, 2, 5, 1, 1) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 13, 3, 1, 2, 1, 2) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 2, 1, 1, 2, 5, 3) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 2, 2, 1, 2, 4, 4) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 3, 3, 5, 3, 3, 5) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 4, 4, 5, 3, 2, 4) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 5, 5, 5, 3, 1, 2) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 1, 4, 4, 4, 5, 3) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 15, 3, 4, 5, 4, 4) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 19, 2, 3, 4, 3, 5) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 2, 1, 2, 5, 2, 2) ;
+INSERT INTO avaliacao(id_cliente_usuario, id_imovel, nota_questao_1, nota_questao_2, nota_questao_3, nota_questao_4, nota_questao_5) VALUES ('96325874125', 1, 1, 2, 1, 1, 1) ;
 
