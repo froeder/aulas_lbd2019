@@ -121,6 +121,7 @@ CREATE TABLE apartamento(
     id SERIAL PRIMARY KEY,
     id_imovel INTEGER NOT NULL,
     id_quartos INTEGER NOT NULL,
+    data_construcao DATE NOT NULL,
     andar VARCHAR(10) NOT NULL,
     valor_condominio NUMERIC(10,2) NOT NULL,
     possui_porteiro BOOLEAN NOT NULL, 
